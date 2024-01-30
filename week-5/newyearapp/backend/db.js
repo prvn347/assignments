@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const { string, boolean } = require("zod")
 
 
-mongoose.connect("mongodb+srv://admin:bTv7yByzrdkmmpBy@cluster0.iykygz9.mongodb.net/")
+mongoose.connect("your db url")
 
 const todoSchema = new mongoose.Schema(
     {
