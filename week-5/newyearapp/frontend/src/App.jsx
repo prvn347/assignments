@@ -2,23 +2,32 @@ import React from 'react';
 import { CreateTodo } from './components/CreateTodo';
 import { Todos } from './components/Todos';
 import './App.css'; // Make sure to include your styles
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
 function App() {
+ 
 
   const [todos,setTodos] = useState([])
+   
+    useEffect(() => {
+      // Runs ONCE after initial rendering
+      // and after every rendering ONLY IF `prop` or `state` changes
+      fetch("http://localhost:3000/todos")
+      .then(async function(res){
+        const json = await res.json();
+          setTodos(json.todos);
+        
+      })
+    }, todos);
+  
 
-  fetch("http://localhost:3000/todos")
-  .then(async function(res){
-    const json = await res.json();
-      setTodos(json.todos);
-    
-  })
+
+ 
   return (
     <div>
-      <CreateTodo />
+      <CreateTodo  todos = {todos} setTodos = {setTodos} />
       <Todos
         todos={todos}
       />

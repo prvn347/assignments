@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function CreateTodo(props){
+export function UpdateTodo(props){
 
     const [title,setTitle] = useState("")
     const [description,setDescription] = useState("")
@@ -12,8 +12,8 @@ export function CreateTodo(props){
             borderRadius:8,
             border: 1 
         }} type="text" placeholder="Title" onChange={function(e){
-            const value = e.target.value;
-            setTitle(e.target.value);
+            const value1 = e.target.value;
+           setTitle(e.target.value);
         }} /><br />
         <input  style={{
             padding: 15,
@@ -22,15 +22,18 @@ export function CreateTodo(props){
             borderRadius:8,
             border: 1 
         }} type="text" placeholder="Description" onChange={function(e){
-            const value = e.target.value;
-            setDescription(e.target.value);
+            const value2 = e.target.value;
+           setDescription(e.target.value);
         }} /><br />
         <button onClick={() =>
-            fetch("http://localhost:3000/todos",{
-                method: "POST",
+            fetch("http://localhost:3000/update",{
+                method: "PUT",
                 body:JSON.stringify({
+                    id : props._id,
                     title: title,
                     description: description
+                    
+
                 }),
                 headers:{
                     "Content-type" : "application/json"
@@ -43,7 +46,7 @@ props.todos = [...props.todos,json]
     //   alert("todo is added")
     
   })
-        }>Add a Todo</button>
+        }>Update a Todo</button>
     </div>
 }
 
