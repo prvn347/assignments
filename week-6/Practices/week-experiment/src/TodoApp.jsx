@@ -1,40 +1,51 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
+import axios from "axios";
+
+
+
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  
+const [id ,setId] = useState(1)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("https://sum-server.100xdevs.com/todos");
-        const json = await res.json();
-        setTodos(json.todos);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <div>
+<button  onClick={() =>
+{
+  setId(id +1)
+}} >Next</button>
+<Todos id = { id} />
 
-      <Todo todoss={todos} />
+
+    
     </div>
   );
 }
 
-function Todo({ todoss }) {
+function Todos(props){
+  const [todos, setTodos] = useState([]);
 
+useEffect(() => {
+    axios.get("https://sum-server.100xdevs.com/todos")
+    .then(function(res){
+
+      setTodos(res.data.todos)
+    })
+  }, [props.id]);
+
+  return <div>
+  <Todo todoss={todos} />
+  </div>
+}
+
+function Todo({ todoss }) {
   return (
     <div>
       {todoss.map((todo) => (
-       
         <div key={todo.id}>
           <h2>{todo.title}</h2>
-          console.log(todo)
           <h4>{todo.description}</h4>
         </div>
       ))}

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react"
 
 
- export const Header =  React.memo(function Headerss(props){
+ export function Heaer(props){
 
     return( <div>
           <button onClick={()=>
@@ -14,5 +14,5 @@ props.setName(Math.random())
         My name is {props.name}
     </div>)
 
-})
+}
 

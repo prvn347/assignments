@@ -5,11 +5,12 @@ import './App.css'
 import { ReusableCard } from './component/ReusableCard'
 import { PersonsData } from './component/PersonsData'
 import Header from './component/Header'
+import { DownloadBtn } from './component/DownloadBtn'
 
 function App() {
   const [card, setCard] = useState([]);
 
-
+ 
 
     // Runs ONCE after initial rendering
     // and after every rendering ONLY IF `prop` or `state` changes
@@ -30,6 +31,7 @@ function App() {
       <Header/>
       <PersonsData card ={card} setCard = {setCard}/>
 <ReusableCard card ={card} />
+
 
     </div>
   )

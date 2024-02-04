@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const { object } = require("zod")
 
 
-mongoose.connect("add db connection url")
+mongoose.connect("mongodb+srv://admin:bTv7yByzrdkmmpBy@cluster0.iykygz9.mongodb.net/")
 
 const cardSchema = new mongoose.Schema({
     name: String,
